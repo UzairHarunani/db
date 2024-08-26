@@ -3,6 +3,34 @@
     <head>
       <title>Desserts Bay</title>
       <link rel="stylesheet" href="db.css">
+      <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+      <script type="text/javascript">
+        (function() {
+            emailjs.init("bQy3kWCmEVT7N--Sx"); // Replace with your EmailJS Public Key
+        })();
+
+        function sendEmail() {
+            // Get values from form inputs
+            const fromName = document.getElementById('from_name').value;
+            const messageContent = document.getElementById('message').value;
+
+            const templateParams = {
+                to_name: 'Recipient',  // Optional: you can make this dynamic as well
+                from_name: fromName,
+                message: messageContent
+            };
+
+            emailjs.send("service_gh3p8cc", "template_jsybaxn", templateParams)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    alert('Email sent successfully!');
+                }, function(error) {
+                    console.error('FAILED...', error);
+                    alert('Failed to send email.');
+                });
+        }
+    </script>
+
     </head>
 
     <body>
@@ -48,8 +76,25 @@
   </tr>
 </table>
 
+<p class="order">Order Now!!!</p>
+
+<form onsubmit="sendEmail(); return false;">  <!-- Use onsubmit to prevent page refresh -->
+  <label for="from_name" class="name">Your Name:</label>
+  <input type="text" id="from_name" name="from_name" required><br><br>
+
+  <section class="message">
+    <label for="message" class="message">What would you like?</label>
+    <input list="desserts" id="message" name="message">
+    <datalist id="desserts">
+      <option value="10 pc Cookies"></option>
+      <option value="6 pc Brownies"></option>
+      <option value="200gm Shrikhand"></option>
+    </datalist>
+  </section><br><br>
+
+  <button type="submit" class="submit-button">Place Order</button>
+</form>
   <p class="contacts" align="center">For more information please contact 0782292070</p>
 
     </body>
-
   </html>

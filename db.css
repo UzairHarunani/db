@@ -32,3 +32,32 @@ body{
   font-family: Arial;
   font-size: 25px;
 }
+
+.order{
+  color: rgb(131, 27, 27);
+  font-family: Arial;
+  font-size: 20px;
+}
+
+.name{
+  color: rgb(131, 27, 27);
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.message{
+  color: rgb(131, 27, 27);
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.submit-button{
+  background-color: rgb(131, 27, 27);
+  color: rgb(0, 255, 255);
+  font-family: Arial;
+  font-weight: bold;
+  padding: 5px 5px;
+  border-radius: 10px;
+}

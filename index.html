@@ -15,11 +15,13 @@
             // Get values from form inputs
             const fromName = document.getElementById('from_name').value;
             const messageContent = document.getElementById('message').value;
+            const amountContent = document.getElementById('amount').value;
 
             const templateParams = {
                 to_name: 'Recipient',  // Optional: you can make this dynamic as well
                 from_name: fromName,
                 message: messageContent
+                amount: amountContent
             };
 
             emailjs.send("service_gh3p8cc", "template_jsybaxn", templateParams)
@@ -91,8 +93,14 @@
       <option value="10 pc Cookies"></option>
       <option value="6 pc Brownies"></option>
       <option value="200gm Shrikhand"></option>
+      <option value="400gm Shrikhand"></option>
+      <option value="6 pc Gulab Jamun"></option>
+      <option value="12 pc Gulab Jamun"></option>
+      <option value="100gm Kulfi"></option>
     </datalist>
   </section><br><br>
+
+  <label for="amount">Quantity: </label><input type="amount" id="amount">
 
   <button type="submit" class="submit-button">Place Order</button>
 </form>

@@ -15,13 +15,13 @@
             // Get values from form inputs
             const fromName = document.getElementById('from_name').value;
             const messageContent = document.getElementById('message').value;
-            const amountContent = document.getElementById('amount').value;
+            const amountValue = document.getElementById('amount').value; // Get the amount
 
             const templateParams = {
                 to_name: 'Recipient',  // Optional: you can make this dynamic as well
                 from_name: fromName,
-                message: messageContent
-                amount: amountContent
+                message: messageContent,
+                amount: amountValue
             };
 
             emailjs.send("service_gh3p8cc", "template_jsybaxn", templateParams)
@@ -100,10 +100,8 @@
     </datalist>
   </section><br><br>
 
-  <section class="amount" id="amount">
-  <label for="amount">Quantity</label>
-  <input type="number" name="amount">
-  </section>
+  <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" required><br><br> <!-- Amount input -->
     
   <button type="submit" class="submit-button">Place Order</button>
 </form>

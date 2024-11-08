@@ -41,7 +41,8 @@ body{
 
 .name,
 .message,
-.amount{
+.amount,
+.from_email{
   color: rgb(131, 27, 27);
   font-family: Arial;
   font-weight: bold;

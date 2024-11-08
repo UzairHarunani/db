@@ -3,6 +3,7 @@
     <head>
       <title>Desserts Bay</title>
       <link rel="stylesheet" href="db.css">
+      <link rel="icon" href="logo.jpg" type="image/x-tool">
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
@@ -21,7 +22,7 @@
             const templateParams = {
                 from_name: fromName,
                 reply_to: fromEmail,      // Set the user's email as the reply-to address
-                message: `From: ${fromEmail}\nMessage: ${messageContent}`, // Include user's email in the message
+                message: `From: ${fromEmail}\nOrder: ${messageContent}`, // Include user's email in the message
                 amount: amountValue 
             };
 

@@ -58,3 +58,22 @@ body{
   border-radius: 10px;
   cursor: pointer;
 }
+
+ @media screen and (max-width: 500px) {
+              .img {
+    height: 50px;
+    width: 50px;
+        }
+
+          .imgs {
+            height: 350px;
+            width: 220px;
+            margin-top: 100px;
+          }
+
+
+          .list {
+            font-size: 12px;
+          }
+
+        }

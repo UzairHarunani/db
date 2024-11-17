@@ -15,7 +15,7 @@ u{
 }
 
 .list{
-  color: rgb(187, 255, 0);
+  color: rgb(179, 67, 67);
   font-family: Arial;
   font-size: 18px;
   margin-bottom: 10px;
@@ -23,7 +23,7 @@ u{
 }
 
 body{
-  background-color: rgb(0, 183, 255);
+  background-color: rgb(255, 255, 255);
 }
 
 .contacts{
@@ -59,44 +59,126 @@ body{
   cursor: pointer;
 }
 
- @media screen and (max-width: 500px) {
-              .img {
+/* Default styles for todo-grid */
+.todo-grid {
+  display: grid;
+  grid-template-columns: 150px 150px 150px 150px;
+  column-gap: 10px;
+  row-gap: 10px;
+  align-items: center;
+  color: rgb(131, 27, 27);
+  font-family: Arial;
+  font-weight: bold;
+}
+
+input {
+  border: 1px solid black;
+}
+
+.bu {
+  background-color: rgb(131, 27, 27);
+  color: rgb(0, 255, 255);
+  font-family: Arial;
+  font-weight: bold;
+  padding: 5px 5px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.delete-todo-button {
+  background-color: darkred;
+  color: rgb(0, 255, 255);
+  font-family: Arial;
+  font-weight: bold;
+  padding: 5px 5px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+input {
+  color: rgb(131, 27, 27);
+  font-family: Arial;
+  font-weight: bold;
+}
+
+.js-total-price {
+  color: rgb(131, 27, 27);
+  font-family: Arial;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 500px) {
+  .img {
     height: 50px;
     width: 50px;
-        }
+  }
 
-          .imgs {
-            height: 350px;
-            width: 220px;
-            margin-top: 100px;
-          }
+  .imgs {
+    height: 350px;
+    width: 220px;
+    margin-top: 100px;
+  }
 
+  .list {
+    font-size: 12px;
+    font-family: Arial;
+    font-weight: bold;
+  }
 
-          .list {
-            font-size: 12px;
-            color: rgb(187, 255, 0);
-            font-family: Arial;
-            font-weight: bold;
-          }
+  .heading {
+    font-family: Algerian;
+    color: brown;
+  }
 
-          .heading{
-            font-family: Algerian;
-            color: brown;
-          }
+  .contacts {
+    color: rgb(179, 67, 67);
+    font-weight: bold;
+    font-family: Arial;
+  }
 
-          .contacts{
-            color: rgb(179, 67, 67);
-            font-weight: bold;
-            font-family: Arial;
-          }
+  .name,
+  .message,
+  .amount,
+  .from_email {
+    color: rgb(131, 27, 27);
+    font-family: Arial;
+    font-weight: bold;
+  }
 
-          .name,
-          .message,
-          .amount,
-          .from_email{
-            color: rgb(131, 27, 27);
-            font-family: Arial;
-            font-weight: bold;
-          }
+  .amountin {
+        color: rgb(131, 27, 27);
+    font-family: Arial;
+    font-weight: bold;
+    width: 20px;
+  }
 
-        }
+  .todo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); /* Ensures compact and flexible columns */
+    gap: 10px;  /* Smaller gap between grid items */
+    width: 100%; /* Ensure grid takes full width */
+    max-width: 100%; /* Prevents overflow */
+    box-sizing: border-box; /* Prevents padding from affecting the width */
+    color: rgb(131, 27, 27);
+    font-family: Arial;
+    font-weight: bold;
+  }
+
+  .todo-grid .item {
+    padding: 1px 8px;
+    margin-right: 3px;
+    border-radius: 5px;
+    text-align: center;
+  }
+
+  .quantity,
+  .price {
+    position: relative;
+  }
+}
+
+.pickdel {
+      color: rgb(131, 27, 27);
+    font-family: Arial;
+    font-weight: bold;
+}

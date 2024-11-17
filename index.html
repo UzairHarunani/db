@@ -7,45 +7,13 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-      <script type="text/javascript">
-        (function() {
-            emailjs.init("bQy3kWCmEVT7N--Sx"); // Replace with your EmailJS Public Key
-        })();
-
-        function sendEmail() {
-            // Get values from form inputs
-            const fromName = document.getElementById('from_name').value;
-            const messageContent = document.getElementById('message').value;
-            const amountValue = document.getElementById('amount').value; // Get the amount
-			const fromEmail = document.getElementById('from_email').value;
-
-            const templateParams = {
-                from_name: fromName,
-                reply_to: fromEmail,      // Set the user's email as the reply-to address
-                message: `My Email: ${fromEmail}\nOrder: ${messageContent}`, // Include user's email in the message
-                amount: amountValue 
-            };
-
-            emailjs.send("service_gh3p8cc", "template_jsybaxn", templateParams)
-                .then(function(response) {
-                    console.log('SUCCESS!', response.status, response.text);
-                    alert('Order placed successfully!');
-                }, function(error) {
-                    console.error('FAILED...', error);
-                    alert('Failed to place order.');
-                });
-
-                document.getElementById('from_name').value = '';
-                document.getElementById('message').value = '';
-                document.getElementById('amount').value = '';
-				document.getElementById('from_email').value = '';
-        }
-    </script>
 
     </head>
 
     <body>
       <h1 align="center" class="heading">
+          <img src="logo.jpg" height="100px" width="100px" style="position: relative; top: 30px">
+          &nbsp;&nbsp;&nbsp;
         <u>
           DESSERTS BAY
         </u>
@@ -76,46 +44,236 @@
         </li>
         <img src="image.png" class="img">
         <li class="list">
-          Chocolate chunk cookies
+          Chocolate Chunk Cookies
         </li>
         <img src="ccc.jpg" class="img">
       </ul>
     </td>
     <td width=85%>
-      <img src="Screenshot 2024-03-03 162834.png" class="imgs">
+      <img src="items.png" class="imgs">
     </td>
   </tr>
 </table>
 
 <p class="order">Order Now!!!</p>
 
-<form onsubmit="sendEmail(); return false;">  <!-- Use onsubmit to prevent page refresh -->
+<form onsubmit="sendEmail(); return false; document.querySelector('.js-todo-list').innerHTML = ''">
   <label for="from_name" class="name">Your Name:</label>
   <input type="text" id="from_name" name="from_name" required><br><br>
 
-  <section class="message">
-    <label for="message" class="message">What would you like?</label>
-    <input list="desserts" id="message" name="message">
-    <datalist id="desserts">
-      <option value="10 pc Cookies"></option>
-      <option value="6 pc Brownies"></option>
-      <option value="200gm Shrikhand"></option>
-      <option value="400gm Shrikhand"></option>
-      <option value="6 pc Gulab Jamun"></option>
-      <option value="12 pc Gulab Jamun"></option>
-      <option value="100gm Kulfi"></option>
-    </datalist>
-  </section><br><br>
+  <p class="name">Your order:</p>  
+  <!--<label for="desserts" class="message">Select your item(s)</label>-->
+  <select id="message" name="message" class="message" required>
+         <option value="Choose your dessert">Choose your dessert</option>
+      <option value="10 pc Cookies">10 pc Cookies</option>
+      <option value="6 pc Brownies">6 pc Brownies</option>
+      <option value="200gm Shrikhand">200gm Shrikhand</option>
+      <option value="400gm Shrikhand">400gm Shrikhand</option>
+      <option value="6 pc Gulab Jamun">6 pc Gulab Jamun</option>
+      <option value="12 pc Gulab Jamun">12 pc Gulab Jamun</option>
+      <option value="100gm Kulfi">100gm Kulfi</option>
+  </select>&nbsp;&nbsp;&nbsp;
 
-        <label for="amount" class="amount">Amount:</label>
-        <input type="number" id="amount" name="amount" required><br><br> <!-- Amount input -->
-		
-<label for="from_email" class="from_email">Your Phone Number:</label>
-        <input id="from_email" name="from_email" required><br><br>
-    
-  <button type="submit" class="submit-button">Place Order</button>
+  <label for="amount" class="amount">Qty:</label>
+  <input type="number" id="amount" name="amount" class="amountin" required>&nbsp;&nbsp;&nbsp;&nbsp;
+  <button type="button" onclick="addorder();" class="bu">Add</button><br><br>
+
+  <div class="js-todo-list todo-grid" id="grid"></div><br><hr style="height: 5px; background-color: black; border-radius: 10px;">  
+        <div class="js-total-price">Total: 0 TZS</div><br><br>
+
+  <label for="from_email" class="from_email">Your Phone Number:</label>
+  <input type="text" id="from_email" name="from_email" required><br><br>
+
+        <section class="pickdel">
+          <span>Do you want pickup or delivery?</span>
+          <br><br>
+          <input type="radio" name="picdel" id="pickup" value="pickup" onclick="removeTextareas();" required>
+          <label for="pickup" onclick="removeTextareas();">Pickup</label>
+          <input type="radio" name="picdel" id="delivery" value="delivery" onclick="showTextarea();" required>
+          <label for="delivery" id="deliverylab" onclick="showTextarea();">Delivery (Kariakoo, Town and Upanga - 2000 TZS)</label>
+        </section>
+
+  <br><br>
+
+  <div id="textarea-container"></div>
+
+  <br><br>
+  
+  <button type="submit" class="submit-button" onclick=" document.querySelector('.js-total-price').textContent = 'Total: 0 TZS'">Place Order</button>
 </form>
-  <p class="contacts" align="center">For more information please contact 0782292070</p>
 
-    </body>
-  </html>
+<center class="contacts">
+  <p>Main contact: +255 782 292 070&nbsp;&nbsp;&nbsp;<a href="https://wa.me/255782292070" target="_blank"><img src="what.jfif" height="40px" width="40px" style="position: relative; top: 10px;" /></a>&nbsp;&nbsp;&nbsp;<a href="https://www.instagram.com/desserts.bay" target="_blank"><img src="insta.jfif" height="30px" width="30px" style="position: relative; top: 5px;" /></a></p>
+  <p style="
+      color: rgb(179, 67, 67);
+  font-weight: bold;
+  font-family: Arial;
+  font-size: 18px;
+  ">Developed by: <a href="https://uzairharunani.github.io/uz10" target="_blank">Uzair Harunani</a> | Powered by <a href="https://artechnologies.co.tz" target="_blank">A R Technologies LTD</a></p>
+</center>
+
+<script type="text/javascript">
+  (function() {
+    emailjs.init("bQy3kWCmEVT7N--Sx"); // Replace with your EmailJS Public Key
+})();
+
+let order = [];
+
+// Function to render the order list and total price
+function renderorder() {
+    let orderHTML = '';
+    let totalPrice = 0; // Initialize total price
+
+    for (let i = 0; i < order.length; i++) {
+        const { name, dueDate, price } = order[i];
+        totalPrice += parseFloat(price) || 0; // Sum up the prices
+
+        const html = `
+            <div id="item" class="item">${name}</div>
+            <div id="quantity" class="quantity">${dueDate} tin(s)</div>
+            <div id="price" class="price">${price} TZS</div>
+            <button onclick="
+                order.splice(${i}, 1);
+                renderorder();
+            " class="delete-todo-button">Delete</button>
+        `;
+        orderHTML += html;
+    }
+
+
+    document.querySelector('.js-todo-list').innerHTML = orderHTML;
+
+    // Display the initial total price without delivery charge
+    document.querySelector('.js-total-price').textContent = `Total: ${totalPrice} TZS`;
+
+    // Check if the delivery option is selected and add 2000 if true
+    const deliveryCharge = document.getElementById('delivery').checked ? 2000 : 0;
+    totalPrice += deliveryCharge;
+
+    // Update the total price displayed with the delivery charge if applicable
+    document.querySelector('.js-total-price').textContent = `Total: ${totalPrice} TZS`;
+}
+
+// Function to add an order item
+function addorder() {
+    const nameInputElement = document.getElementById('message');
+    const name = nameInputElement.value;
+    const dateInputElement = document.getElementById('amount');
+    const dueDate = dateInputElement.value;
+
+    // Calculate price based on the selected item
+    let price = 0;
+    if (name === '10 pc Cookies') {
+        price = 15000 * parseInt(dueDate, 10);
+    } else if (name === '6 pc Brownies') {
+        price = 15000 * parseInt(dueDate, 10);
+    } else if (name === '200gm Shrikhand') {
+        price = 5000 * parseInt(dueDate, 10);
+    } else if (name === '400gm Shrikhand') {
+        price = 10000 * parseInt(dueDate, 10);
+    } else if (name === '6 pc Gulab Jamun') {
+        price = 5500 * parseInt(dueDate, 10);
+    } else if (name === '12 pc Gulab Jamun') {
+        price = 10000 * parseInt(dueDate, 10);
+    } else if (name === '100gm Kulfi') {
+        price = 3000 * parseInt(dueDate, 10);
+    }
+
+    // Push the order details to the array
+    order.push({ name, dueDate, price });
+    renderorder();
+}
+
+        function showTextarea() {
+    // Remove any existing textareas
+    removeTextareas();
+
+    // Create a new textarea
+    const textareaContainer = document.getElementById('textarea-container');
+    const newp = document.createElement('p');
+    newp.innerHTML = 'Please enter your address below';
+    newp.style = "color: rgb(131, 27, 27); font-family: Arial; font-weight: bold;";
+    const newTextarea = document.createElement('textarea');
+    newTextarea.placeholder = 'Address';
+    newTextarea.rows = 4;
+    newTextarea.cols = 50;
+    newTextarea.classList.add('textClass');
+
+    // Add the new textarea to the container
+    textareaContainer.appendChild(newp);
+    textareaContainer.appendChild(newTextarea);
+}
+
+function removeTextareas() {
+    const textareaContainer = document.getElementById('textarea-container');
+    textareaContainer.innerHTML = '';
+}
+
+// Add event listeners for the radio buttons to update the total price
+document.getElementById('pickup').addEventListener('click', renderorder);
+document.getElementById('delivery').addEventListener('click', renderorder);
+
+// Function to send the email with the order details
+function sendEmail() {
+    // Get values from form inputs
+    const fromName = document.getElementById('from_name').value;
+    let messageContent = document.querySelector('.todo-grid').textContent;
+    messageContent = messageContent.replaceAll('Delete', '');
+    const fromEmail = document.getElementById('from_email').value;
+
+    // Check if the delivery option is selected and get the address
+    let address = '';
+    if (document.getElementById('delivery').checked) {
+        address = document.querySelector('.textClass').value;
+        if (!address) {
+            alert('Please enter your address for delivery.');
+            return; // Stop the function if address is not provided
+        }
+    }
+
+    // Calculate total price, including delivery if selected
+    let totalPrice = 0;
+    order.forEach(item => {
+        totalPrice += parseFloat(item.price) || 0; // Sum up item prices
+    });
+
+    const deliveryCharge = document.getElementById('delivery').checked ? 2000 : 0;
+    totalPrice += deliveryCharge;
+
+    // Get the selected pickup or delivery option
+    const picdelOption = document.querySelector('input[name="picdel"]:checked');
+    const picdelValue = picdelOption ? picdelOption.value : 'Not selected';
+
+    // Prepare templateParams for email
+    const templateParams = {
+        from_name: fromName,
+        reply_to: fromEmail,
+        message: `My Phone Number: ${fromEmail}\nOrder: ${messageContent}\nPickup/Delivery: ${picdelValue}${address ? `\nAddress:\n${address}` : ''}\nTotal Price: ${totalPrice} TZS` // Add address\n only if provided
+    };
+
+    //confirm then send email
+    if (confirm(`Please confirm your order below\n` + templateParams.message)) {
+
+    // Send the email using EmailJS
+    emailjs.send("service_gh3p8cc", "template_jsybaxn", templateParams)
+        .then(function(response) {
+            console.log('SUCCESS!', response.status, response.text);
+            alert('Order placed successfully!');
+        }, function(error) {
+            console.error('FAILED...', error);
+            alert('Failed to place order.');
+        });
+
+    // Clear input fields after sending the email
+    document.getElementById('from_name').value = '';
+    document.getElementById('from_email').value = '';
+    document.getElementById('grid').textContent = '';
+    document.getElementById('message').value = '';
+    document.getElementById('amount').value = '';
+    removeTextareas(); // Clear the address input if present
+    }
+
+}
+</script>
+
+</body>

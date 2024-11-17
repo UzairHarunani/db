@@ -49,19 +49,21 @@
         <img src="ccc.jpg" class="img">
       </ul>
     </td>
-    <td width=85%>
-      <img src="items.png" class="imgs">
+    <td width=85% align="center">
+      <img src="items.png" class="imgs"><br>
+
+      <h3 class="extra">We also take bulk orders for weddings, birthdays and special events</h4>
     </td>
   </tr>
 </table>
 
 <p class="order">Order Now!!!</p>
 
-<form onsubmit="sendEmail(); return false; document.querySelector('.js-todo-list').innerHTML = ''">
+<form onsubmit="sendEmail(); return false; document.querySelector('.js-todo-list').innerHTML = ''; orderHTML = '';">
   <label for="from_name" class="name">Your Name:</label>
   <input type="text" id="from_name" name="from_name" required><br><br>
 
-  <p class="name">Your order:</p>  
+  <p class="name">Your order (Click add for every item selcted):</p>  
   <!--<label for="desserts" class="message">Select your item(s)</label>-->
   <select id="message" name="message" class="message" required>
          <option value="Choose your dessert">Choose your dessert</option>
@@ -109,7 +111,7 @@
   font-weight: bold;
   font-family: Arial;
   font-size: 18px;
-  ">Developed by: <a href="https://uzairharunani.github.io/uz10" target="_blank">Uzair Harunani</a> | Powered by <a href="https://artechnologies.co.tz" target="_blank">A R Technologies LTD</a></p>
+  ">Developed by: <a href="https://uzairharunani.github.io/uz10" target="_blank">Uzair Harunani</a><br>Powered by: <a href="https://artechnologies.co.tz" target="_blank">A R Technologies LTD</a></p>
 </center>
 
 <script type="text/javascript">
@@ -151,7 +153,7 @@ function renderorder() {
     totalPrice += deliveryCharge;
 
     // Update the total price displayed with the delivery charge if applicable
-    document.querySelector('.js-total-price').textContent = `Total: ${totalPrice} TZS`;
+    document.querySelector('.js-total-price').textContent = `Total: ${number_format(totalPrice,2)} TZS`;
 }
 
 // Function to add an order item
@@ -222,6 +224,13 @@ function sendEmail() {
     const fromEmail = document.getElementById('from_email').value;
 
     // Check if the delivery option is selected and get the address
+
+
+    const emptyGrid = document.querySelector('.todo-grid').textContent;
+
+    if (emptyGrid === '') {
+      alert('There are no items added to your order. Please selct items and quantity and click add to add your items.');
+    } else {
     let address = '';
     if (document.getElementById('delivery').checked) {
         address = document.querySelector('.textClass').value;
@@ -270,7 +279,9 @@ function sendEmail() {
     document.getElementById('grid').textContent = '';
     document.getElementById('message').value = '';
     document.getElementById('amount').value = '';
+    orderHTML = '';
     removeTextareas(); // Clear the address input if present
+    }
     }
 
 }
